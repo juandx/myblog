@@ -1,4 +1,5 @@
 #! -*- encoding:utf-8 -*-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 from .forms import PostForm
@@ -6,6 +7,14 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
+from haystack.forms import SearchForm
+def full_search(request):
+    """全局搜索"""
+    keywords = request.GET['q']
+    sform = SearchForm(request.GET)
+    posts = sform.search()
+    return render(request, 'blog/post_search_list.html',
+                  {'posts': posts, 'list_header': '关键字 \'{}\' 搜索结果'.format(keywords)})
 
 # Create your views here.
 
@@ -18,6 +27,8 @@ def post_list(request):
     posts = Post.objects.filter(published_date__isnull=False).order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 '''
+
+@login_required
 def post_list(request):
     """所有已发布文章"""
     postsAll = Post.objects.annotate(num_comment=Count('id')).filter(
@@ -34,6 +45,7 @@ def post_list(request):
         posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/post_list.html', {'posts': posts, 'page': True})
 
+@login_required
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -63,6 +75,7 @@ def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
+@login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
