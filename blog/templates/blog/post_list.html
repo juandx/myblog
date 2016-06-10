@@ -4,7 +4,11 @@
         <div class="post">
             <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>published: {{ post.published_date }}</p>
-            <p>{{ post.text|linebreaks }}</p>
+            <p>
+                {% autoescape off %}
+                   {{ post.text|linebreaks }}
+                {% endautoescape %}
+            </p>
         </div>
     {% endfor %}
     {% if page %}
