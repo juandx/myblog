@@ -2,12 +2,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'syntaxhighlighter/styles/shCoreDefault.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'syntaxhighlighter/scripts/shCore.js' %}"></script>
+    <script type="text/javascript">SyntaxHighlighter.config.bloggerMode = true;SyntaxHighlighter.all();</script>
     <title>Django Girls Blog</title>
 </head>
 <body>
@@ -29,5 +31,14 @@
             </div>
         </div>
     </div>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushJScript.js' %}"></script>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushBash.js' %}"></script>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushPhp.js' %}"></script>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushJava.js' %}"></script>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushSql.js' %}"></script>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushXml.js' %}"></script>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushPython.js' %}"></script>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushCss.js' %}"></script>
+    <script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushCpp.js' %}"></script>
 </body>
 </html>

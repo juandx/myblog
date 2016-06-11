@@ -16,8 +16,8 @@
     </div>
     <h1>{{ post.title }}</h1>
     <p>
-    {% autoescape off %}
-       {{ post.text|linebreaks }}
-    {% endautoescape %}
+        {% autoescape off %}
+           {{ post.text|linebreaks }}
+        {% endautoescape %}
     </p>
 {% endblock %}
