@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-from models import Post
+from .models import Post
 from haystack import indexes
 class PostIndex(indexes.SearchIndex, indexes.Indexable):
     # 文章内容
