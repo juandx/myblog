@@ -22,12 +22,6 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
 
-'''
-def post_list(request):
-    posts = Post.objects.filter(published_date__isnull=False).order_by('-published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
-'''
-
 @login_required
 def post_list(request):
     """所有已发布文章"""

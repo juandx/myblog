@@ -51,6 +51,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -149,3 +150,12 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+from django.utils.translation import ugettext_lazy as _
+LANGUAGES = (
+    ('zh-cn', _('Simplified Chinese')),
+    ('en', _('English')),
+)
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, "locale"),
+)

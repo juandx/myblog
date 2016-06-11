@@ -8,6 +8,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Post(models.Model):
+    class Meta:
+        app_label = 'blog'
+        verbose_name = u'文章'
+        verbose_name_plural = u'文章'
     author = models.ForeignKey(User)
     title = models.CharField(max_length=200)
     text = models.TextField()
