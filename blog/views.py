@@ -85,17 +85,13 @@ def post_remove(request, pk):
 
 def upload(request):
     try:
-        print 'sss'
         file = request.FILES['image']
         #form提交的文件的名字，上面html里面的name
         img = Image.open(file)
         img.thumbnail((500, 500), Image.ANTIALIAS)
         img.save('static/upload/images/'+file.name, img.format)
-        print 'ssd'
         #图片的name和format都是动态获取的，支持png，jpeg，gif等
     except Exception, e:
-        print 'no'
         return HttpResponse('error %s' % e)
     path = '/site_media/'+file.name
-    print path
     return HttpResponse("<script>top.$('.mce-btn.mce-open').parent().find('.mce-textbox').val('%s').closest('.mce-window').find('.mce-primary').click();</script>" % path)
