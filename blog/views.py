@@ -91,7 +91,7 @@ def upload(request):
         img.thumbnail((500, 500), Image.ANTIALIAS)
         img.save('static/upload/images/'+file.name, img.format)
         #图片的name和format都是动态获取的，支持png，jpeg，gif等
-    except Exception, e:
+    except Exception as e:
         return HttpResponse('error %s' % e)
     path = '/site_media/'+file.name
     return HttpResponse("<script>top.$('.mce-btn.mce-open').parent().find('.mce-textbox').val('%s').closest('.mce-window').find('.mce-primary').click();</script>" % path)
