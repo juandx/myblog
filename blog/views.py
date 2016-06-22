@@ -1,4 +1,4 @@
-#! -*- encoding:utf-8 -*-
+# encoding=utf8
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Post
@@ -10,12 +10,16 @@ from django.db.models import Count
 from haystack.forms import SearchForm
 from django.http import HttpResponse
 from PIL import Image
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
 
 def full_search(request):
     """全局搜索"""
     keywords = request.GET['q']
     sform = SearchForm(request.GET)
     posts = sform.search()
+    print keywords
     return render(request, 'blog/post_search_list.html',
                   {'posts': posts, 'list_header': '关键字 \'{}\' 搜索结果'.format(keywords)})
 
@@ -29,11 +33,12 @@ def post_detail(request, pk):
 def post_list(request):
     """所有已发布文章"""
     postsAll = Post.objects.annotate(num_comment=Count('id')).filter(
-        published_date__isnull=False).order_by('-published_date')
+        published_date__isnull=False).prefetch_related('category').order_by('-published_date')
     paginator = Paginator(postsAll, 5)  # Show 5 contacts per page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
+        print posts
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
         posts = paginator.page(1)
@@ -41,6 +46,14 @@ def post_list(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/post_list.html', {'posts': posts, 'page': True})
+
+def post_list_by_category(request, cg):
+    """根据目录列表已发布文章"""
+    posts = Post.objects.filter(
+        published_date__isnull=False, category__name=cg).prefetch_related(
+        'category').order_by('-published_date')
+    return render(request, 'blog/post_list.html',
+                  {'posts': posts, 'list_header': '\'{}\' 分类的存档'.format(cg)})
 
 @login_required
 def post_new(request):

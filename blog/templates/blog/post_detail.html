@@ -15,9 +15,19 @@
         {% endif %}
     </div>
     <h1>{{ post.title }}</h1>
-    <p>
-        {% autoescape off %}
-           {{ post.text|linebreaks }}
-        {% endautoescape %}
-    </p>
+    <div>
+        <p>
+            {% autoescape off %}
+               {{ post.text|linebreaks }}
+            {% endautoescape %}
+        </p>
+    </div>
+    <div class="under">
+        <span class="categories">分类: </span>
+        <span>
+            <a href="{% url 'blog.views.post_list_by_category' cg=post.category.name %}"
+               rel="category">{{ post.category.name }}
+            </a>
+        </span>
+    </div>
 {% endblock %}

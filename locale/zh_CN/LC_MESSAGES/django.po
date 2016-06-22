@@ -26,11 +26,11 @@ msgid "English"
 msgstr "English"
 
 #: base.html
-msgid "Simple Blog"
-msgstr "极简博客"
+msgid "WenBin Blog"
+msgstr "文斌的博客"
 
 msgid "Hello"
-msgstr "欢迎你"
+msgstr "你好"
 
 msgid "previous"
 msgstr "上一页"
