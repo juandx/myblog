@@ -95,7 +95,7 @@ DATABASES = {
 #        'NAME': 'juandx$myblog',    #你的数据库名称
 #        'USER': 'juandx',   #你的数据库用户名
 #        'PASSWORD': 'wenbinblog', #你的数据库密码
-#'HOST': 'juandx.mysql.pythonanywhere-services.com', #你的数据库主机，留空默认为localhost
+#        'HOST': 'juandx.mysql.pythonanywhere-services.com', #你的数据库主机，留空默认为localhost
 #        'PORT': '3306', #你的数据库端口
 #    }
 #}

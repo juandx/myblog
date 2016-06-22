@@ -10,6 +10,7 @@ from django.db.models import Count
 from haystack.forms import SearchForm
 from django.http import HttpResponse
 from PIL import Image
+#python3.4 强制encoding utf8，所以不需要下面两句
 import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -19,7 +20,6 @@ def full_search(request):
     keywords = request.GET['q']
     sform = SearchForm(request.GET)
     posts = sform.search()
-    print keywords
     return render(request, 'blog/post_search_list.html',
                   {'posts': posts, 'list_header': '关键字 \'{}\' 搜索结果'.format(keywords)})
 
@@ -38,7 +38,6 @@ def post_list(request):
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
-        print posts
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
         posts = paginator.page(1)
