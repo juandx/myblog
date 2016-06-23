@@ -13,7 +13,7 @@
     <script type="text/javascript">SyntaxHighlighter.config.bloggerMode = true;SyntaxHighlighter.all();</script>
     <title>{% trans 'WenBin Blog'%}</title>
 </head>
-<body>
+<body class="body_bgc">
     <div class="page-header">
         {% if user.is_authenticated %}
         <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
@@ -24,7 +24,7 @@
         {% endif %}
         <h1><a href="{% url 'blog.views.post_list' %}">文斌的博客</a></h1>
     </div>
-    <div>
+    <div class="row">
         <!-- searchbox START -->
         <div id="searchbox">
             <form action="{% url 'blog.views.full_search' %}" method="get">
@@ -37,7 +37,7 @@
         </div>
         <!-- searchbox END -->
     </div>
-    <div class="content">
+    <div class="col-md-9">
         <div class="row">
             <div class="col-md-8">
             {% block content %}

@@ -11,9 +11,9 @@ from haystack.forms import SearchForm
 from django.http import HttpResponse
 from PIL import Image
 #python3.4 强制encoding utf8，所以不需要下面两句
-import sys
-reload(sys)
-sys.setdefaultencoding( "utf-8" )
+#import sys
+#reload(sys)
+#sys.setdefaultencoding( "utf-8" )
 
 def full_search(request):
     """全局搜索"""
@@ -29,7 +29,6 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
 
-@login_required
 def post_list(request):
     """所有已发布文章"""
     postsAll = Post.objects.annotate(num_comment=Count('id')).filter(
@@ -67,6 +66,7 @@ def post_new(request):
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
+@login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -80,6 +80,7 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+@login_required
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
@@ -90,11 +91,13 @@ def post_publish(request, pk):
     post.publish()
     return redirect('blog.views.post_detail', pk=pk)
 
+@login_required
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('blog.views.post_list')
 
+@login_required
 def upload(request):
     try:
         file = request.FILES['image']
