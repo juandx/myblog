@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load blog_tags %}
 {% block content %}
     {% if list_header %}
         <div class="box">{{ list_header }}</div>
@@ -9,7 +10,7 @@
             <p>published: {{ post.published_date }}</p>
             <p>
                 {% autoescape off %}
-                   {{ post.text }}
+                   {{ post.text|more:post.id }}
                 {% endautoescape %}
             </p>
         </div>
