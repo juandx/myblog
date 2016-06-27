@@ -12,6 +12,7 @@
     <script type="text/javascript" src="{% static 'syntaxhighlighter/scripts/shCore.js' %}"></script>
     <script type="text/javascript">SyntaxHighlighter.config.bloggerMode = true;SyntaxHighlighter.all();</script>
     <title>{% trans 'WenBin Blog'%}</title>
+    <!-- title>陈严的博客</title -->
 </head>
 <body class="body_bgc">
     <div class="page-header">
@@ -23,6 +24,7 @@
         <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
         {% endif %}
         <h1><a href="{% url 'blog.views.post_list' %}">文斌的博客</a></h1>
+        <!-- h1><a href="{% url 'blog.views.post_list' %}">陈严的博客</a></h1 -->
     </div>
     <div class="row">
         <!-- searchbox START -->
@@ -60,6 +62,46 @@
                         {% endfor %}
                     </ul>
                 </div>
+                {% if user.is_authenticated %}
+                <div class="widget">
+                    <button class="cat-item cat-item-10 btn btn-primary" data-toggle="modal" data-target="#AddModal">添加分类</button>
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" id="AddModal" tabindex="-1" role="dialog" 
+                       aria-labelledby="myModalLabel" aria-hidden="true">
+                       <div class="modal-dialog">
+                          <div class="modal-content">
+                             <div class="modal-header">
+                                <button type="button" class="close" 
+                                   data-dismiss="modal" aria-hidden="true">
+                                      &times;
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                   输入新添加的分类
+                                </h4>
+                             </div>
+                             <form action="{% url 'blog.views.add_category' %}" class="crawl" method="GET">
+                                 <div class="modal-body">
+                                     <div class="row">
+                                         <h4 class="label-warning">提交前请先保存文章</h4>
+                                     </div>
+                                     <div class="row">
+                                         <input name="category_name" class="form-control" value="{{ cate_name|escape }}"></input>
+                                         <input type="hidden" name="current_url" class="form-control" value="{{request.get_full_path|escape }}"></input>
+                                     </div>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" 
+                                       data-dismiss="modal">关闭
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" >
+                                       提交
+                                    </button>
+                                 </div>
+                             </form>
+                          </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div>
+                {% endif %}
             </div>
             <!-- sidebar north END -->
         </div>

@@ -1,14 +1,14 @@
 # encoding=utf8
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Category
 from .forms import PostForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
 from haystack.forms import SearchForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from PIL import Image
 #python3.4 强制encoding utf8，所以不需要下面两句
 #import sys
@@ -23,10 +23,17 @@ def full_search(request):
     return render(request, 'blog/post_search_list.html',
                   {'posts': posts, 'list_header': '关键字 \'{}\' 搜索结果'.format(keywords)})
 
+def add_category(request):
+    cate_name = request.GET.get('category_name')
+    url_name = request.GET.get('current_url')
+    category = Category.objects.create(name=cate_name)
+    return HttpResponseRedirect(url_name)
+
 # Create your views here.
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    post.text = post.text.replace('[!--more--]', '', 1)
     return render(request, 'blog/post_detail.html', {'post': post})
 
 def post_list(request):
@@ -96,6 +103,13 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('blog.views.post_list')
+'''
+@login_required
+def category_remove(request, cg):
+    category = get_object_or_404(Category, cg=cg)
+    category.delete()
+    return redirect('blog.views.post_list')
+'''
 
 @login_required
 def upload(request):

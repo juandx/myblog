@@ -6,7 +6,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'category')
+        fields = ('category', 'title', 'text')
         labels = {
             'category': '分类目录',
             'text': '正文',

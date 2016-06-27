@@ -1,8 +1,8 @@
 .body_bgc {
-    background-color: #336666;
+    background-color: #8dbca9;
 }
 .page-header {
-    background-color: #009966;
+    background-color: #005100;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -19,7 +19,7 @@ h1, h2, h3, h4 {
 }
 .date {
     float: right;
-    color: #828282;
+    color: #006699;
 }
 .save {
     float: right;
