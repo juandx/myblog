@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="col-md-9">
+    <div class="container">
+        <div><img src="{% static 'images/wb.jpg' %}" class="img-rounded" alt="Cinque Terre" width="304" height="280"></div>
+    </div class="container">
+        <ul class="list-group">
+            <li class="list-group-item">2015从BUAA毕业，当前北漂于一家外企</li>
+            <li class="list-group-item">喜欢python flask vim angularjs bootstrap 希望能成为一名优秀的全栈</li>
+            <li class="list-group-item">正在做的事情关于openstack docker kubernetes devops</li>
+            <li class="list-group-item">博客是兴趣之余使用django编写,代码放在我的github，大家可以共享<a href="https://github.com/juandx/myblog">https://github.com/juandx/myblog</a></li>
+        </ul>
+    </div>
+{% endblock content %}

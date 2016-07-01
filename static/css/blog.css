@@ -7,6 +7,7 @@
     padding: 20px 20px 20px 40px;
 }
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    font-weight: bolder;
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
@@ -37,5 +38,6 @@ h1, h2, h3, h4 {
     margin-bottom: 70px;
 }
 .post h1 a, .post h1 a:visited {
+    font-weight: bolder;
     color: #000000;
 }

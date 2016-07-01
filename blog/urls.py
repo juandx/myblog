@@ -3,8 +3,10 @@ from django.conf.urls import patterns, url
 from . import views
 
 
+print 'ddd'
 urlpatterns = [
     url(r'^$', views.post_list),
+    url(r'^about_me', views.about_me, name='about_me'),
     url(r'^posts/search/$', views.full_search, name='full_search'),
     url(r'^posts/upload/$', views.upload, name='upload'),
     url(r'^posts/add_category/$', views.add_category, name='upload'),

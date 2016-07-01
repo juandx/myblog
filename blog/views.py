@@ -23,6 +23,7 @@ def full_search(request):
     return render(request, 'blog/post_search_list.html',
                   {'posts': posts, 'list_header': '关键字 \'{}\' 搜索结果'.format(keywords)})
 
+@login_required
 def add_category(request):
     cate_name = request.GET.get('category_name')
     url_name = request.GET.get('current_url')
@@ -32,6 +33,7 @@ def add_category(request):
 # Create your views here.
 
 def post_detail(request, pk):
+    print 'ttt'
     post = get_object_or_404(Post, pk=pk)
     post.text = post.text.replace('[!--more--]', '', 1)
     return render(request, 'blog/post_detail.html', {'post': post})
@@ -103,13 +105,6 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('blog.views.post_list')
-'''
-@login_required
-def category_remove(request, cg):
-    category = get_object_or_404(Category, cg=cg)
-    category.delete()
-    return redirect('blog.views.post_list')
-'''
 
 @login_required
 def upload(request):
@@ -124,3 +119,6 @@ def upload(request):
         return HttpResponse('error %s' % e)
     path = '/site_media/'+file.name
     return HttpResponse("<script>top.$('.mce-btn.mce-open').parent().find('.mce-textbox').val('%s').closest('.mce-window').find('.mce-primary').click();</script>" % path)
+
+def about_me(request):
+    return render(request, 'blog/about_me.html', {})
