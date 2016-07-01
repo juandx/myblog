@@ -2,8 +2,6 @@
 from django.conf.urls import patterns, url
 from . import views
 
-
-print 'ddd'
 urlpatterns = [
     url(r'^$', views.post_list),
     url(r'^about_me', views.about_me, name='about_me'),

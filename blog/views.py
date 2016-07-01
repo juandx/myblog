@@ -33,7 +33,6 @@ def add_category(request):
 # Create your views here.
 
 def post_detail(request, pk):
-    print 'ttt'
     post = get_object_or_404(Post, pk=pk)
     post.text = post.text.replace('[!--more--]', '', 1)
     return render(request, 'blog/post_detail.html', {'post': post})
