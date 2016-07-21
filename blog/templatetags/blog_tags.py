@@ -5,9 +5,9 @@ Topic: 过滤器filter和标签tag
 Desc : 
 """
 from django import template
-#import sys
-#reload(sys)
-#sys.setdefaultencoding( "utf-8" )
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
 
 register = template.Library()
 

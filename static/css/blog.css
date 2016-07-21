@@ -34,10 +34,23 @@ h1, h2, h3, h4 {
     font-size: 26pt;
     margin-right: 20px;
 }
-.post {
-    margin-bottom: 70px;
+.post .post-meta{
+    //margin-bottom: 70px;
+    padding: 0;
+    margin: 15px 0 0;
+    color: #6E7173;
+    float: left;
+    display: inline;
+    text-indent: .15em;
 }
 .post h1 a, .post h1 a:visited {
     font-weight: bolder;
     color: #000000;
+}
+.codeblock .tag {
+    background-color: inherit;
+    font-family: "Input Mono", "PT Mono", Consolas, Monaco, Menlo, monospace;
+    border: none;
+    padding: 0;
+    margin: 0;
 }

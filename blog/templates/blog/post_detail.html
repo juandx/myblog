@@ -1,7 +1,8 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <div class="date">
+    <h1>{{ post.title }}</h1>
+    <div class="post-meta">
         {% if post.published_date %}
             {{ post.published_date }}
         {% else %}
@@ -14,7 +15,6 @@
             <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
     </div>
-    <h1>{{ post.title }}</h1>
     <div>
         <p>
             {% autoescape off %}
