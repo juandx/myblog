@@ -18,9 +18,6 @@ def more(value, post_id):
     more_str = '[!--more--]'
     if more_str in value:
         new_value = value.split(more_str)[0] + '<a href="/post/{0}">查看全文...</a>'.format(post_id)
-        print value
-        print '===='
-        print new_value
         return new_value
     return value
 
@@ -30,10 +27,6 @@ def more_wb(value, post_id):
     more_str = '[!--more--]'
     if more_str in value:
         new_value = value.split(more_str)[0] + '<h2>转载请注明来自:<a href="/post/{0}">http://wenbin.com/post/{0}</a></h2>'.format(post_id)
-        print value
-        print '===='
-        print new_value
-        return new_value
         #return value
     return value
 
