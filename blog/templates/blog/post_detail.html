@@ -7,9 +7,9 @@
     </div>
     <div class="post-meta">
         {% if post.published_date %}
-            <div class="post_date">
+            <span class="post_date">
                 {{ post.published_date }}
-            </div>
+            </span>
         {% else %}
             {% if user.is_authenticated %}
                 <a class="btn btn-default" href="{% url 'blog.views.post_publish' pk=post.pk %}">Publish</a>
