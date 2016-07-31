@@ -2,14 +2,14 @@
     background-color: #8dbca9;
 }
 .page-header {
-    background-color: #005100;
+    background-color: #8dbca9;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     font-weight: bolder;
-    color: #ffffff;
-    font-size: 36pt;
+    color: #666666;
+    font-size: 40pt;
     text-decoration: none;
 }
 .content {
@@ -45,7 +45,7 @@ h1, h2, h3, h4 {
 }
 .post h1 a, .post h1 a:visited {
     font-weight: bolder;
-    color: #000000;
+    color: #666666;
 }
 .codeblock .tag {
     background-color: inherit;
@@ -53,4 +53,15 @@ h1, h2, h3, h4 {
     border: none;
     padding: 0;
     margin: 0;
+}
+.about_me {
+    float: right;
+}
+.post_date {
+    color: #666666;
+    font-size: 8pt;
+}
+.post_category {
+    color: #666666;
+    font-weight:900;
 }

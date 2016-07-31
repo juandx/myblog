@@ -1,21 +1,31 @@
 {% extends 'blog/base.html' %}
-{% load blog_tags %}
 {% block content %}
+{% load blog_tags %}
     {% if list_header %}
         <div class="box">{{ list_header }}</div>
     {% endif %}
     {% for post in posts %}
         <div class="post">
-            <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>published: {{ post.published_date }}</p>
-            <p>
-                {% autoescape off %}
-                   {{ post.text|more:post.id }}
-                {% endautoescape %}
-            </p>
+            <div>
+                <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            </div>
+            <div class="post_date">
+                <p>published: {{ post.published_date }}</p>
+            </div>
+            <div>
+                <p>
+                    {% autoescape off %}
+                        {% if post.is_markdown %}
+                            {{ post.markdown_text|striptags|truncatechars:300 }}
+                        {% else %}
+                            {{ post.tinymce_text|striptags|truncatechars:300 }}
+                        {% endif %}
+                    {% endautoescape %}
+                </p>
+            </div>
         </div>
         <div class="under">
-            <span class="categories">分类: </span>
+            <span class="categories post_date">分类: </span>
             <span>
                 <a href="{% url 'blog.views.post_list_by_category' cg=post.category.name %}"
                    rel="category">{{ post.category.name }}

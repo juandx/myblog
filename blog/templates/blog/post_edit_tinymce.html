@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<script src="{% static 'tinymce/js/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'tinymce/js/textareas.js' %}"></script>
+<div>
+    <div class="post">
+        <h2>{% if is_new %}新建文章{% else %}编辑文章{% endif %}</h2>
+        <form id="my_form" method="POST" class="post-form">{% csrf_token %}
+            <div class="content">
+                <button id="tinymce_btn" type="button" class="save btn btn-default">富文本</button>
+                <button id="markdown_btn" type="button" class="save btn btn-default" style="margin-right: 5px;">markdown</button>
+                <button type="button" class="save btn btn-default" onclick="location.href='/'" style="margin-right: 5px;">取消</button>
+                <button id="submit_btn" type="submit" class="save btn btn-default" style="margin-right: 5px;">保存</button>
+                <div id="epiceditor">
+                    <p>{{ form.as_p }}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- p> I don't know why below form in '<div class="content">' is invaild</p -->
+    <div>
+        <iframe id="form_target" name="form_target" style="display:none"></iframe>
+        <form id="my_form" action="{% url 'blog.views.upload' %}" target="form_target" method="post" enctype="multipart/form-data" style="width:0px;height:0;overflow:hidden">{% csrf_token %}
+            <input name="image" type="file" onchange="$('#my_form').submit();this.value='';">
+        </form>
+    </div>
+</div>
+<script>
+    $("#id_text").hide();
+    $("#id_text").siblings("label").hide();
+    $("#id_is_markdown").hide();
+    $("#id_is_markdown").siblings("label").hide();
+    $("#id_markdown_text").hide();
+    $("#id_markdown_text").siblings("label").hide();
+    $("#markdown_btn").click(function(){
+        $("#id_is_markdown").attr("checked",true);
+        $("#my_form").submit();
+    });
+</script>
+{% endblock %}

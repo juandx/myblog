@@ -2,6 +2,7 @@
 from django.conf.urls import patterns, url
 from . import views
 
+print 'heng'
 urlpatterns = [
     url(r'^$', views.post_list),
     url(r'^about_me', views.about_me, name='about_me'),
@@ -12,6 +13,7 @@ urlpatterns = [
     url(r'^site_media/(?P<path>.*)', 'django.views.static.serve', {'document_root': 'static/upload/images/'}),
     url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail),
     url(r'^post/new/$', views.post_new, name='post_new'),
+    url(r'^post/(?P<pk>[0-9]+)/edit_tinymce/$', views.post_edit, name='post_edit_tinymce'),
     url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
     url(r'^drafts/$', views.post_draft_list, name='post_draft_list'),
     url(r'^post/(?P<pk>[0-9]+)/publish/$', views.post_publish, name='post_publish'),

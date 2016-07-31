@@ -7,7 +7,11 @@
             <p></p>
             <p>
                 {% autoescape off %}
-                    {{ post.text|truncatechars:200 }}
+                {% if post.is_markdown %}
+                    {{ post.markdown_text|striptags|truncatechars:100 }}
+                {% else %}
+                    {{ post.tinymce_text|striptags|truncatechars:100 }}
+                {% endif %}
                 {% endautoescape %}
             </p>
         </div>

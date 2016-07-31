@@ -1,10 +1,15 @@
 {% extends 'blog/base.html' %}
+{% load blog_tags %}
 
 {% block content %}
-    <h1>{{ post.title }}</h1>
+    <div class="post">
+        <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+    </div>
     <div class="post-meta">
         {% if post.published_date %}
-            {{ post.published_date }}
+            <div class="post_date">
+                {{ post.published_date }}
+            </div>
         {% else %}
             {% if user.is_authenticated %}
                 <a class="btn btn-default" href="{% url 'blog.views.post_publish' pk=post.pk %}">Publish</a>
@@ -18,12 +23,16 @@
     <div>
         <p>
             {% autoescape off %}
-               {{ post.text|linebreaks }}
+                {% if post.is_markdown %}
+                        {{ post.markdown_text }}
+                {% else %}
+                    {{ post.tinymce_text }}
+                {% endif %}
             {% endautoescape %}
         </p>
     </div>
     <div class="under">
-        <span class="categories">分类: </span>
+        <span class="categories post_date">分类: </span>
         <span>
             <a href="{% url 'blog.views.post_list_by_category' cg=post.category.name %}"
                rel="category">{{ post.category.name }}

@@ -34,7 +34,7 @@ def add_category(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    post.text = post.text.replace('[!--more--]', '', 1)
+    #post.text = post.text.replace('[!--more--]', '', 1)
     return render(request, 'blog/post_detail.html', {'post': post})
 
 def post_list(request):
@@ -77,16 +77,27 @@ def post_new(request):
 @login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    old_flag = post.is_markdown
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('blog.views.post_detail', pk=post.pk)
+            new_flag = post.is_markdown
+            if old_flag == new_flag:
+                return redirect('blog.views.post_detail', pk=post.pk)
+            else:
+                if post.is_markdown:
+                    return render(request, 'blog/post_edit.html', {'form': form})
+                else:
+                    return render(request, 'blog/post_edit_tinymce.html', {'form': form})
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+    if post.is_markdown:
+        return render(request, 'blog/post_edit.html', {'form': form})
+    else:
+        return render(request, 'blog/post_edit_tinymce.html', {'form': form})
 
 @login_required
 def post_draft_list(request):

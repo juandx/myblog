@@ -1,5 +1,6 @@
 tinyMCE.init({
-    selector: "textarea",
+    selector: "#id_tinymce_text",
+    //selector: "textarea",
     //width: 800,
     height: 300,
     forced_root_block: false,
@@ -16,3 +17,6 @@ tinyMCE.init({
         }
     }
 });
+//var editor = new EpicEditor({basePath: '/static/lib/epiceditor'}).load();
+//console.log("{% static 'lib/epiceditor' %}");
+//var editor = new EpicEditor({basePath: {% static 'lib/epiceditor' %}}).load();

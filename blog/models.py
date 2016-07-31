@@ -22,9 +22,14 @@ class Post(models.Model):
     author = models.ForeignKey(User)
     title = models.CharField(max_length=200)
     text = models.TextField()
+    #markdown_text = models.TextField()
+    #markdown_pretext = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     category = models.ForeignKey(Category)
+    is_markdown = models.BooleanField(default=True)
+    markdown_text = models.TextField(default='default_text')
+    tinymce_text = models.TextField(default='default_text')
 
     def publish(self):
         self.published_date = timezone.now()
