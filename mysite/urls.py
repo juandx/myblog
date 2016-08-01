@@ -22,7 +22,7 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('blog.urls')),
-    url(r'^accounts/login/$', views.login),
-    url(r'^accounts/logout/$', views.logout, {'next_page': '/'}),
+    url(r'^accounts_wb/login/$', views.login),
+    url(r'^accounts_wb/logout/$', views.logout, {'next_page': '/'}),
     url(r'^search/', include('haystack.urls')),
 ]
