@@ -6,11 +6,11 @@
 <script src="{% static 'lib/epiceditor/js/epiceditor.min.js' %}"></script>
 <div>
     <div class="post">
-        <h2>{% if is_new %}新建文章{% else %}编辑文章{% endif %}</h2>
+        <h2><a href="{% url 'post_markdown' %}" target="_blank">{% if is_new %}新建文章{% else %}编辑文章{% endif %}</a></h2>
         <form id="my_form" method="POST" class="post-form">{% csrf_token %}
             <div class="content">
                 <button id="tinymce_btn" type="button" class="save btn btn-default">富文本</button>
-                <button id="markdown_btn" type="button" class="save btn btn-default" style="margin-right: 5px;">markdown</button>
+                <button id="markdown_btn" type="button" class="save btn btn-default" onclick='location.href="{% url 'post_markdown' %}"' target="_blank" style="margin-right: 5px;">markdown</button>
                 <button type="button" class="save btn btn-default" onclick="location.href='/'" style="margin-right: 5px;">取消</button>
                 <button id="submit_btn" type="submit" class="save btn btn-default" style="margin-right: 5px;">保存</button>
                 <div id="epiceditor">
@@ -46,5 +46,6 @@
         $("#id_is_markdown").attr("checked",false);
         $("#my_form").submit();
     });
+    //editor.enterFullscreen(function () {});
 </script>
 {% endblock %}

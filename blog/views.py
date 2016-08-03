@@ -132,3 +132,6 @@ def upload(request):
 
 def about_me(request):
     return render(request, 'blog/about_me.html', {})
+
+def post_markdown(request):
+    return render(request, 'blog/post_markdown.html', {})

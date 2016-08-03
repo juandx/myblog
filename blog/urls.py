@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.post_list),
     url(r'^about_me', views.about_me, name='about_me'),
+    url(r'^post_markdown', views.post_markdown, name='post_markdown'),
     url(r'^posts/search/$', views.full_search, name='full_search'),
     url(r'^posts/upload/$', views.upload, name='upload'),
     url(r'^posts/add_category/$', views.add_category, name='upload'),
