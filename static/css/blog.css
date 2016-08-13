@@ -66,5 +66,8 @@ h1, h2, h3, h4 {
     font-weight:900;
 }
 .about_me_li {
-    style="background-color:#8dbca9;
+    background-color:#8dbca9;
+}
+.post_detail {
+    font-size: 11pt;
 }
