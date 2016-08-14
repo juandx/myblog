@@ -61,7 +61,7 @@
                             <ul>
                                 {% for ca in CATEGORIES %}
                                     <li class="cat-item cat-item-10">
-                                        <a href="{% url 'blog.views.post_list_by_category' cg=ca.name %}"
+                                        <a href="{% url 'blog.views.post_list_by_category' cg=ca.id %}"
                                             title="{{ ca.name }}">{{ ca.name }}({{ca.num_post}})</a>
                                     </li>
                                 {% endfor %}

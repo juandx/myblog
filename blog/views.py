@@ -56,10 +56,11 @@ def post_list(request):
 def post_list_by_category(request, cg):
     """根据目录列表已发布文章"""
     posts = Post.objects.filter(
-        published_date__isnull=False, category__name=cg).prefetch_related(
+        published_date__isnull=False, category__id=cg).prefetch_related(
         'category').order_by('-published_date')
+    category = Category.objects.filter(id=cg)
     return render(request, 'blog/post_list.html',
-                  {'posts': posts, 'list_header': '\'{}\' 分类的存档'.format(cg)})
+                  {'posts': posts, 'list_header': '\'{}\' 分类的存档'.format(category[0].name)})
 
 @login_required
 def post_new(request):
