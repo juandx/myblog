@@ -30,7 +30,7 @@
     </div>
     </br>
     <div>
-        <h4>转载请注明出处:&nbsp<a href="{% url 'blog.views.post_detail' pk=post.pk %}" target="_blank">转载自Bin's Blog:&nbsp <b>{{ post.title }}</b></a></h4>
+        <h4>转载请注明出处:&nbsp<a href="{% url 'blog.views.post_detail' pk=post.pk %}" target="_blank">转载自Bin's Blog:&nbsp; <b>{{ post.title }}(&nbsp;http://www.wenbin.cf{% url 'blog.views.post_detail' pk=post.pk %}&nbsp;)</b></a></h4>
     </div>
     </br>
     <div class="post_detail">
