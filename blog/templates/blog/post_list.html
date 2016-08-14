@@ -27,7 +27,7 @@
         <div class="under">
             <span class="categories post_date">category: </span>
             <span>
-                <a href="{% url 'blog.views.post_list_by_category' cg=post.category.name %}"
+                <a href="{% url 'blog.views.post_list_by_category' cg=post.category.id %}"
                    rel="category">{{ post.category.name }}
                 </a>
             </span>
