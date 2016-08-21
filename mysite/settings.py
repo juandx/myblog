@@ -26,7 +26,7 @@ SECRET_KEY = '+syt)yb91mcq50w&rpcq_#6w004v)w9t2--$l!oz7dt&=#(ae)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'www.wenbin.cf']
 
 
 # Application definition
@@ -82,22 +82,22 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 #DATABASES = {
 #    'default': {
-#        'ENGINE': 'django.db.backends.mysql', 
-#        'NAME': 'juandx$myblog',    #你的数据库名称
-#        'USER': 'juandx',   #你的数据库用户名
-#        'PASSWORD': 'wenbinblog', #你的数据库密码
-#        'HOST': 'juandx.mysql.pythonanywhere-services.com', #你的数据库主机，留空默认为localhost
-#        'PORT': '3306', #你的数据库端口
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 #}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'myblog',    #你的数据库名称
+        'USER': 'wenbin',   #你的数据库用户名
+        'PASSWORD': 'wenbinblog', #你的数据库密码
+        'HOST': 'localhost', #你的数据库主机，留空默认为localhost
+        'PORT': '3306', #你的数据库端口
+    }
+}
 
 
 # Password validation
